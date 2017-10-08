@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Bookshelf.Titarenko.com</title>
+    </head>
+    <body style="font: 16px/20px Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;">
+        <h1>Welcome!</h1>
+
+        <br/>
+        <p>Please, look at our books: <a th:href="@{/book/all}">/book/all</a></p>
+        <p>Or view the list of authors: <a th:href="@{/author/all}">/author/all</a></p>
+        <br/>
+
+        <p>Other instructions you can find out in the "readme" file.</p>
+        <p>Thank you for check out my application!</p>
+    </body>
+</html>
