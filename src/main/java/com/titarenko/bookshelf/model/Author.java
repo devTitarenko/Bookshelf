@@ -21,8 +21,8 @@ public class Author extends BaseObject {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "book_author",
-            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
     private Collection<Book> books;
 
     @Past

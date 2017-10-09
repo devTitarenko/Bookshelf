@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 
 @Component
@@ -35,6 +36,7 @@ public class DatabaseLoader implements CommandLineRunner {
     }
 
     @Override
+    @Transactional
     public void run(String... strings) throws Exception {
         if (!authorRepository.findAll().iterator().hasNext()) {
             dataGenerator();
@@ -72,6 +74,8 @@ public class DatabaseLoader implements CommandLineRunner {
         rBloch.setBirthDate((new LocalDate(1917, 4, 5)).toDate());
         rBloch.setBooks(new ArrayList<Book>() {{
             add(book1);
+            add(book0);
+            add(book6);
         }});
         rBloch.setRewards(new ArrayList<Reward>() {{
             add(award6);
@@ -102,6 +106,7 @@ public class DatabaseLoader implements CommandLineRunner {
         jRowling.setSex(Author.Sex.FEMALE);
         jRowling.setBirthDate((new LocalDate(1965, 7, 31)).toDate());
         jRowling.setBooks(new ArrayList<Book>() {{
+            add(book0);
             add(book4);
         }});
         jRowling.setRewards(new ArrayList<Reward>() {{
@@ -114,6 +119,7 @@ public class DatabaseLoader implements CommandLineRunner {
         jBrodsky.setSex(Author.Sex.MALE);
         jBrodsky.setBirthDate((new LocalDate(1940, 5, 24)).toDate());
         jBrodsky.setBooks(new ArrayList<Book>() {{
+            add(book4);
             add(book5);
         }});
 

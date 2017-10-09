@@ -7,7 +7,6 @@ CREATE TABLE `author` (
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
-  AUTO_INCREMENT = 6
   DEFAULT CHARSET = latin1;
 
 
@@ -19,20 +18,19 @@ CREATE TABLE `book` (
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
-  AUTO_INCREMENT = 8
   DEFAULT CHARSET = latin1;
 
 
 CREATE TABLE `book_author` (
-  `book_id`   INT(11) NOT NULL,
   `author_id` INT(11) NOT NULL,
-  KEY `FK7gjky30tgeg3fbl0eh0gy5o62` (`author_id`),
-  KEY `FK2vndhku3xyc75led6n9l8gvqe` (`book_id`),
-  CONSTRAINT `FK2vndhku3xyc75led6n9l8gvqe` FOREIGN KEY (`book_id`) REFERENCES `author` (`id`),
-  CONSTRAINT `FK7gjky30tgeg3fbl0eh0gy5o62` FOREIGN KEY (`author_id`) REFERENCES `book` (`id`)
+  `book_id`   INT(11) NOT NULL,
+  KEY `FKhwgu59n9o80xv75plf9ggj7xn` (`book_id`),
+  KEY `FKbjqhp85wjv8vpr0beygh6jsgo` (`author_id`),
+  CONSTRAINT `FKbjqhp85wjv8vpr0beygh6jsgo` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`),
+  CONSTRAINT `FKhwgu59n9o80xv75plf9ggj7xn` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`)
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = latin1;
+  DEFAULT CHARSET = utf8;
 
 
 CREATE TABLE `reward` (
@@ -45,5 +43,5 @@ CREATE TABLE `reward` (
   CONSTRAINT `FKc28uip68e4d2hgat4gwdueksg` FOREIGN KEY (`fk_author_id`) REFERENCES `author` (`id`)
 )
   ENGINE = InnoDB
-  AUTO_INCREMENT = 9
-  DEFAULT CHARSET = latin1;
+  DEFAULT CHARSET = utf8;
+
