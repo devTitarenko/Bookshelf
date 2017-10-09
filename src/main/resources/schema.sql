@@ -1,4 +1,4 @@
-CREATE TABLE `author` (
+CREATE TABLE IF NOT EXISTS `author` (
   `id`         INT(11)      NOT NULL AUTO_INCREMENT,
   `birth_date` DATETIME              DEFAULT NULL,
   `first_name` VARCHAR(255) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `author` (
   DEFAULT CHARSET = latin1;
 
 
-CREATE TABLE `book` (
+CREATE TABLE IF NOT EXISTS `book` (
   `id`    INT(11) NOT NULL AUTO_INCREMENT,
   `genre` VARCHAR(255)     DEFAULT NULL,
   `isbn`  VARCHAR(255)     DEFAULT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE `book` (
   DEFAULT CHARSET = latin1;
 
 
-CREATE TABLE `book_author` (
+CREATE TABLE IF NOT EXISTS `book_author` (
   `author_id` INT(11) NOT NULL,
   `book_id`   INT(11) NOT NULL,
   KEY `FKhwgu59n9o80xv75plf9ggj7xn` (`book_id`),
@@ -33,7 +33,7 @@ CREATE TABLE `book_author` (
   DEFAULT CHARSET = utf8;
 
 
-CREATE TABLE `reward` (
+CREATE TABLE IF NOT EXISTS `reward` (
   `id`           INT(11)      NOT NULL AUTO_INCREMENT,
   `title`        VARCHAR(255) NOT NULL,
   `year`         INT(11)               DEFAULT NULL,
