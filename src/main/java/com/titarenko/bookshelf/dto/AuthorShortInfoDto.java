@@ -16,10 +16,9 @@ public class AuthorShortInfoDto {
     private List<String> bookNames;
 
     public AuthorShortInfoDto(Author author) {
-        if (author !=null) {
+        if (author != null) {
             this.firstName = author.getFirstName();
             this.lastName = author.getLastName();
-            new LocalDate("");
             this.age = Years.yearsBetween(
                     new LocalDate(author.getBirthDate()), new LocalDate()).getYears();
             bookNames = new ArrayList<>(author.getBooks().size());

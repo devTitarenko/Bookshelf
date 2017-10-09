@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/author")
@@ -31,8 +33,10 @@ public class AuthorController {
     }
 
     @GetMapping(path = "/all")
-    public @ResponseBody Iterable<Author> getAllAuthors() {
-        return service.findAll();
+    public @ResponseBody List<AuthorDto> getAllAuthors() {
+        List<AuthorDto> list = new ArrayList<>();
+        service.findAll().forEach(author -> list.add(mapper.BoToDto(author)));
+        return list;
     }
 
     @GetMapping(path = "/info/{id}")

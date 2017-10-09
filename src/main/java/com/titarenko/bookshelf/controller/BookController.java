@@ -10,6 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/book")
 public class BookController {
@@ -28,8 +31,10 @@ public class BookController {
     }
 
     @GetMapping(path = "/all")
-    public @ResponseBody Iterable<Book> getAllBooks() {
-        return service.findAll();
+    public @ResponseBody Iterable<BookDto> getAllBooks() {
+        List<BookDto> bookDtoList = new ArrayList<>();
+        service.findAll().forEach(book -> bookDtoList.add(mapper.BoToDto(book)));
+        return bookDtoList;
     }
 
     @GetMapping(path = "/info/{id}")

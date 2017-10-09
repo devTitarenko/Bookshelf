@@ -5,10 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.text.Format;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Author extends BaseObject {
@@ -22,9 +19,11 @@ public class Author extends BaseObject {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "FK_AUTHOR_ID", referencedColumnName = "ID")
-    private List<Book> books;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"))
+    private Collection<Book> books;
 
     @Past
     private Date birthDate;
@@ -74,11 +73,11 @@ public class Author extends BaseObject {
         this.sex = sex;
     }
 
-    public List<Book> getBooks() {
+    public Collection<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(Collection<Book> books) {
         this.books = books;
     }
 

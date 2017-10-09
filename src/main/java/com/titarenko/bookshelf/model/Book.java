@@ -1,8 +1,10 @@
 package com.titarenko.bookshelf.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Book extends BaseObject {
@@ -11,6 +13,8 @@ public class Book extends BaseObject {
     private String isbn;
     @Enumerated(EnumType.STRING)
     private Genre genre;
+    @ManyToMany(mappedBy = "books")
+    private Collection<Author> authors;
 
     public Book() {
     }
@@ -65,6 +69,14 @@ public class Book extends BaseObject {
         this.genre = genre;
     }
 
+    public Collection<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Collection<Author> authors) {
+        this.authors = authors;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,12 +87,13 @@ public class Book extends BaseObject {
 
         return Objects.equals(title, other.title)
                 && Objects.equals(isbn, other.isbn)
-                && Objects.equals(genre, other.genre);
+                && Objects.equals(genre, other.genre)
+                && Objects.equals(authors, other.authors);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), title, isbn, genre);
+        return Objects.hash(getId(), title, isbn, genre, authors);
     }
 
     @Override
@@ -90,6 +103,7 @@ public class Book extends BaseObject {
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", genre=" + genre.name +
+                ", authors=" + authors.size() +
                 '}';
     }
 }
