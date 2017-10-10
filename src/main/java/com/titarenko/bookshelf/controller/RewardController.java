@@ -44,12 +44,16 @@ public class RewardController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateReward(@RequestBody RewardDto rewardDto) {
-        service.save(mapper.DtoToBo(rewardDto));
+    public @ResponseBody String updateReward(@RequestBody RewardDto rewardDto) {
+        Reward reward = mapper.DtoToBo(rewardDto);
+        service.save(reward);
+        return "Reward's id is: " + reward.getId();
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createAuthor(@RequestBody RewardDto rewardDto) {
-        service.save(mapper.DtoToBo(rewardDto));
+    public @ResponseBody String createAuthor(@RequestBody RewardDto rewardDto) {
+        Reward reward = mapper.DtoToBo(rewardDto);
+        service.save(reward);
+        return "Reward's id is: " + reward.getId();
     }
 }

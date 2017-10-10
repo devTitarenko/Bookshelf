@@ -6,6 +6,7 @@ import com.titarenko.bookshelf.dto.AuthorShortInfoDto;
 import com.titarenko.bookshelf.model.*;
 import com.titarenko.bookshelf.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -56,12 +57,16 @@ public class AuthorController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateAuthor(@RequestBody @Valid AuthorDto authorDto) {
-        service.save(mapper.DtoToBo(authorDto));
+    public @ResponseBody String updateAuthor(@RequestBody @Valid AuthorDto authorDto) {
+        Author author = mapper.DtoToBo(authorDto);
+        service.save(author);
+        return "Author's id is: " + author.getId();
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createAuthor(@RequestBody @Valid AuthorDto authorDto) {
-        service.save(mapper.DtoToBo(authorDto));
+    public @ResponseBody String createAuthor(@RequestBody @Valid AuthorDto authorDto) {
+        Author author = mapper.DtoToBo(authorDto);
+        service.save(author);
+        return "Author's id is: " + author.getId();
     }
 }

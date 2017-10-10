@@ -49,12 +49,16 @@ public class BookController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateAuthor(@RequestBody BookDto bookDto) {
-        service.save(mapper.DtoToBo(bookDto));
+    public @ResponseBody String updateAuthor(@RequestBody BookDto bookDto) {
+        Book book = mapper.DtoToBo(bookDto);
+        service.save(book);
+        return "Book's id is: " + book.getId();
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createAuthor(@RequestBody BookDto bookDto) {
-        service.save(mapper.DtoToBo(bookDto));
+    public @ResponseBody String createAuthor(@RequestBody BookDto bookDto) {
+        Book book = mapper.DtoToBo(bookDto);
+        service.save(book);
+        return "Book's id is: " + book.getId();
     }
 }

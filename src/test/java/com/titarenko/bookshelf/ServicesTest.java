@@ -43,7 +43,6 @@ public class ServicesTest {
         book.setAuthors(new ArrayList<Author>() {{
             add(author);
         }});
-
     }
 
     @Test

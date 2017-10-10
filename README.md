@@ -48,6 +48,29 @@ http://localhost:9000/author/info/short/{id} - view short info of author by id
 Also available DELETE, PUT and POST Requests.
 
 
+Example of JSON for Author
+-------------------------
+
+    {
+        "id": 6,
+        "firstName": "George",
+        "lastName": "Martin",
+        "sex": "MALE",
+        "books": {
+            "6": "Harry Potter",
+            "8": "A Song of Ice and Fire"
+        },
+        "birthDate": "09/19/1948",
+        "rewards": [
+            {
+                "id": 9,
+                "title": "Primetime Emmy",
+                "year": 2016
+            }
+        ]
+    }
+
+
 Technologies
 -------------------------
 - Java 8

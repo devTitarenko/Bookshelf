@@ -2,6 +2,7 @@ package com.titarenko.bookshelf.dto;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class BookDto {
@@ -10,7 +11,7 @@ public class BookDto {
     private String isbn;
     @NotNull
     private String genre;
-    private List<Integer> authorIds;
+    private Map<Integer, String> authors;
 
     public String getTitle() {
         return title;
@@ -36,12 +37,12 @@ public class BookDto {
         this.genre = genre;
     }
 
-    public List<Integer> getAuthors() {
-        return authorIds;
+    public Map<Integer, String> getAuthors() {
+        return authors;
     }
 
-    public void setAuthors(List<Integer> authors) {
-        this.authorIds = authors;
+    public void setAuthors(Map<Integer, String> authors) {
+        this.authors = authors;
     }
 
     @Override
@@ -54,11 +55,11 @@ public class BookDto {
         return Objects.equals(title, other.title)
                 && Objects.equals(isbn, other.isbn)
                 && Objects.equals(genre, other.genre)
-                && Objects.equals(authorIds, other.authorIds);
+                && Objects.equals(authors, other.authors);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, isbn, genre, authorIds);
+        return Objects.hash(title, isbn, genre, authors);
     }
 }

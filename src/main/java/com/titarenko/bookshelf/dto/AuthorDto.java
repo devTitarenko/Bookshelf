@@ -12,17 +12,26 @@ import java.util.Objects;
 
 public class AuthorDto {
 
+    private Integer id;
     @NotNull
     private String firstName;
     @NotNull
     private String lastName;
     @NotNull
     private String sex;
-    private List<Integer> bookIds;
+    private Map<Integer, String> books;
     @Past
-    @JsonFormat(pattern = "MM/dd/yyyy", shape = JsonFormat.Shape.STRING, timezone="CET")
+    @JsonFormat(pattern = "MM/dd/yyyy", shape = JsonFormat.Shape.STRING, timezone = "CET")
     private Date birthDate;
     private List<Reward> rewards;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -48,12 +57,12 @@ public class AuthorDto {
         this.sex = sex;
     }
 
-    public List<Integer> getBooks() {
-        return bookIds;
+    public Map<Integer, String> getBooks() {
+        return books;
     }
 
-    public void setBooks(List<Integer> bookIds) {
-        this.bookIds = bookIds;
+    public void setBooks(Map<Integer, String> bookIds) {
+        this.books = bookIds;
     }
 
     public Date getBirthDate() {
@@ -79,16 +88,17 @@ public class AuthorDto {
 
         AuthorDto other = (AuthorDto) o;
 
-        return Objects.equals(firstName, other.firstName)
+        return Objects.equals(id, other.id)
+                && Objects.equals(firstName, other.firstName)
                 && Objects.equals(lastName, other.lastName)
                 && Objects.equals(sex, other.sex)
                 && Objects.equals(birthDate, other.birthDate)
-                && Objects.equals(bookIds, other.bookIds)
+                && Objects.equals(books, other.books)
                 && Objects.equals(rewards, other.rewards);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, sex, birthDate, bookIds, rewards);
+        return Objects.hash(id, firstName, lastName, sex, birthDate, books, rewards);
     }
 }
