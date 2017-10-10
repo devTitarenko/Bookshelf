@@ -1,6 +1,7 @@
 package com.titarenko.bookshelf.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -9,11 +10,13 @@ import java.util.Set;
 @Entity
 public class Book extends BaseObject {
 
+    @NotNull
     private String title;
     private String isbn;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Genre genre;
-    @ManyToMany(mappedBy = "books")
+    @ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
     private Collection<Author> authors;
 
     public Book() {
@@ -103,7 +106,7 @@ public class Book extends BaseObject {
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", genre=" + genre.name +
-                ", authors=" + authors.size() +
+                (authors != null ? ", number of authors=" + authors.size() : "") +
                 '}';
     }
 }

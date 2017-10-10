@@ -16,6 +16,7 @@ public class Author extends BaseObject {
     @NotNull
     private String lastName;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
@@ -127,6 +128,7 @@ public class Author extends BaseObject {
                 ", sex=" + sex.name +
                 ", birthDate=" + dateFormat.format(birthDate) +
                 ", rewards=" + rewards +
+                (books != null ? ", number of books=" + books.size() : "") +
                 '}';
     }
 }
